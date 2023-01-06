@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install fastapi uvicorn pydantic torch transformers gdown
+RUN pip install fastapi uvicorn pydantic torch transformers==2.8.0 gdown
 
 # Create the environment:
 # RUN git clone https://github.com/curiousily/Deploy-BERT-for-Sentiment-Analysis-with-FastAPI.git .
