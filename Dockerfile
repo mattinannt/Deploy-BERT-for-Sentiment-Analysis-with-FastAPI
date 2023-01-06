@@ -1,14 +1,14 @@
-FROM python:3.9-bullseye
+FROM rust:slim-bullseye
 
 WORKDIR /app
 
 COPY . .
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV source $HOME/.cargo/env
+RUN apt-get update
+RUN apt-get install -y build-essential libssl-dev libffi-dev python3-dev python3-pip cargo pkg-config
 
-RUN pip install --upgrade pip
-RUN pip install fastapi uvicorn pydantic torch transformers==2.8.0 gdown
+RUN pip3 install --upgrade pip
+RUN pip3 install fastapi uvicorn pydantic torch transformers==2.8.0 gdown
 
 # Create the environment:
 # RUN git clone https://github.com/curiousily/Deploy-BERT-for-Sentiment-Analysis-with-FastAPI.git .
